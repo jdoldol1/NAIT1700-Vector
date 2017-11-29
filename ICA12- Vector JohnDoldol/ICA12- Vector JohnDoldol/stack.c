@@ -9,15 +9,10 @@ void PrintVector(Vector v)
 	for (int i = 0; i < v.size; ++i)
 	{
 		//don't print zeroes(empty vectors)
-		/*if (v.store[i] == 0)
-			continue;*/
+		if (v.store[i] == 0)
+			continue;
 
 		printf("%d ", v.store[i]);
-
-		////mod 10 spacing, optional
-		//if ((i >= 9) && ((i+1) % 10 == 0))
-		//	printf("\n");
-			
 	}
 }
 
@@ -71,19 +66,10 @@ Vector Grow(Vector v)
 
 Vector Push(Vector  v, int val)
 {
-
 	//weight is the total number of items inside the vector
 	if (v.size == v.max)
 		v = Grow(v);
 
-	//check condition for resizing
-	//if (v.max > 10 && weight < v.max)
-	//{
-	//	//if vector size is more than default(10), check if weight is less than max
-	//	//if so, there are spaces in the front side of the vector
-	//	//resize the vector and move everything back tothe fron
-	//	v = ReSize(v);
-	//}
 	v.store[v.size++] = val;
 	return v;
 }
@@ -98,6 +84,7 @@ Vector Pop(Vector v, int * pop)
 }
 Vector ReSize(Vector v)
 {
+	if (!v.store) return v;
 	//create new vector to replace old one
 	Vector w = { NULL, 0, 0, 0 };	
 

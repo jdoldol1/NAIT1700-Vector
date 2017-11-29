@@ -17,7 +17,7 @@ Vector DeQueue(Vector v, int * pop)
 	//v.store[v.size++] = queue;
 	int weight = v.size - v.top;
 
-	if (weight < v.max)
+	if (weight < (v.max /2))
 	{
 		v = ReSize(v);
 	}

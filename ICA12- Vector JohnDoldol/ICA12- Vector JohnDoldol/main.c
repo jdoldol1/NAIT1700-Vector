@@ -43,35 +43,34 @@ int * main(int argc, char ** argv)
 	PrintVector(vect);
 
 	printf("\nEnque integer 420 to a vector: \n");
-	vect = Enqueue(vect, 420);
+	vect = Enqueue(vect, 999);
+
+	printf("\nSize: %d, Top: %d",vect.size, vect.top);
 	PrintVector(vect);
+	printf("\n");	
 	
-	
+	printf("------------------ Vector Dequeue Test ------------------\n");
 	////QUEUE and DEQUQUe secquence
 	//test out resize as well
-	int count = 0;
-	int pop;
-	//shrink vector for resizing test
-	while ( count < 4)
-	{
+	int pop;	
+	int counter = 0;
+	while (vect.top != vect.size)
+	{		
 		vect = DeQueue(vect, &pop);
-		count++;
-	}
-
-	printf("\nDeQueue: %d, Size: %d, Top: %d", pop, vect.size, vect.top);
-	PrintVector(vect);
-
-	while (vect.size < 12)
-	{
-		printf("\n\nEnter Queue value: ");
-		scanf("%d", &pop);
-		vect = Enqueue(vect, pop);
-		vect = DeQueue(vect, &pop);
-		printf("\nDeQueue: %d, Size: %d, Top: %d", pop, vect.size, vect.top);
+		printf("\nDeQueue: %d\nSize: %d, Top: %d", pop, vect.size, vect.top);
+		//tell user the vector resized
+		//this happens when top goes back to 1
+		if (counter > 0 && vect.top == 1)
+		{
+			printf("\nVector SHRUNK!");
+		}
 		PrintVector(vect);
+		printf("\n");
+		counter++;
 	}
-	vect = Release(vect);
+	
 
+	vect = Release(vect);
 
 	getchar();
 	fflush(stdout);
@@ -137,4 +136,15 @@ int * main(int argc, char ** argv)
 //		printf("\n-test end: VectEnque\n");
 //	}
 //	++count;
+//}
+//
+//
+//while (vect.size < 12)
+//{
+//	printf("\n\nEnter Queue value: ");
+//	scanf("%d", &pop);
+//	vect = Enqueue(vect, pop);
+//	vect = DeQueue(vect, &pop);
+//	printf("\nDeQueue: %d, Size: %d, Top: %d", pop, vect.size, vect.top);
+//	PrintVector(vect);
 //}
